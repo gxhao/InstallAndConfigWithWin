@@ -125,7 +125,7 @@ Install-IfNotInstalled "OpenVPNTechnologies.OpenVPN"
 Install-IfNotInstalled "Armin2208.WindowsAutoNightMode"
 Install-IfNotInstalled "ZeroTier.ZeroTierOne"
 Install-IfNotInstalled "Yuanli.uTools"
-Install-IfNotInstalled "Fndroid.ClashForWindows"
+Install-IfNotInstalled "MystiPanda.ClashVerge"
 Install-IfNotInstalled "Tencent.QQ.NT"
 Install-IfNotInstalled "CrystalDiskMark8_is1"
 Install-IfNotInstalled "Microsoft.PowerShell"
@@ -147,10 +147,13 @@ Install-StoreApp -storeAppId "9PKTQ5699M62" -wingetAppName "iCloud"
 RemoveUWP Microsoft.MSPaint
 RemoveUWP Microsoft.Microsoft3DViewer
 
-# scoop
+# 安装用户态的软件
+pwsh
+Install-IfNotInstalled "Spotify.Spotify"
+# 安装scoop
 iwr -useb get.scoop.sh | iex
-# 安装maven
 scoop install maven
+
 
 Write-Host "Cleaning desktop..." -ForegroundColor Green
 Remove-Item $HOME\Desktop\* -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
