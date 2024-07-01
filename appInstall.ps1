@@ -127,7 +127,7 @@ Install-IfNotInstalled "ZeroTier.ZeroTierOne"
 Install-IfNotInstalled "Yuanli.uTools"
 Install-IfNotInstalled "MystiPanda.ClashVerge"
 Install-IfNotInstalled "Tencent.QQ.NT"
-Install-IfNotInstalled "CrystalDiskMark8_is1"
+# Install-IfNotInstalled "CrystalDiskMark8_is1"
 Install-IfNotInstalled "Microsoft.PowerShell"
 Install-IfNotInstalled "dbeaver.dbeaver"
 
@@ -147,15 +147,16 @@ Install-StoreApp -storeAppId "9PKTQ5699M62" -wingetAppName "iCloud"
 RemoveUWP Microsoft.MSPaint
 RemoveUWP Microsoft.Microsoft3DViewer
 
-# 安装用户态的软件
-pwsh
-Install-IfNotInstalled "Spotify.Spotify"
-# 安装scoop
-iwr -useb get.scoop.sh | iex
-scoop install maven
-
 
 Write-Host "Cleaning desktop..." -ForegroundColor Green
 Remove-Item $HOME\Desktop\* -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
 Remove-Item "C:\Users\Public\Desktop\*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+
+# 安装用户态的软件
+# echo "start install user app"
+# start-process powershell -credential (Get-Credential)
+# Install-IfNotInstalled "Spotify.Spotify"
+# 安装scoop
+# iwr -useb get.scoop.sh | iex
+# scoop install maven
 
