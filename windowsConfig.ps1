@@ -48,7 +48,7 @@ Write-Host "Linking back SSH keys..." -ForegroundColor Green
 $iCloudDriveSshConfigPath = "$CloudPath\Storage\SSH\"
 $localSshConfigPath = "$HOME\.ssh\"
 $_ = Get-Content $iCloudDriveSshConfigPath\id_rsa.pub # Ensure file is available.
-cmd /c "rmdir $localSshConfigPath /q"
+cmd /c "rmdir $localSshConfigPath /s /q"
 cmd /c "mklink /d `"$localSshConfigPath`" `"$iCloudDriveSshConfigPath`""
 Write-Host "Testing SSH features..." -ForegroundColor Green
 Write-Host "yes" | ssh -o "StrictHostKeyChecking no" git@github.com
