@@ -112,10 +112,6 @@ if (Get-ScheduledTask -TaskName "WT" -ErrorAction SilentlyContinue) {
     Register-ScheduledTask -Action $taskAction -Trigger $trigger -TaskName "WT" -Description "Start WT in the background."
 }
 
-Write-Host "-----------------------------" -ForegroundColor Green
-Write-Host "        PART 4  - SDK    " -ForegroundColor Green
-Write-Host "-----------------------------" -ForegroundColor Green
-
 
 Write-Host "Disable Sleep on AC Power..." -ForegroundColor Green
 Powercfg /Change monitor-timeout-ac 20
