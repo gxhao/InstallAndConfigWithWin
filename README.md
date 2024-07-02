@@ -3,7 +3,9 @@
 
 
 ## Getting started
-
+```
+iex ((New-Object System.Net.WebClient).DownloadString('https://gitlab.aiursoft.cn/gxhao/installandconfigwithwin/-/raw/master/appInstall.ps1'))
+```
 打开Windows PowerShell 管理员，执行appInstall执行安装所需应用。
 ## 应用列表：
 ### 日常类
