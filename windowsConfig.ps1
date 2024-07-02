@@ -6,7 +6,8 @@ Write-Host "-----------------------------" -ForegroundColor Green
 
 $email = Read-Host -Prompt 'Input your email'
 $name = Read-Host -Prompt 'Input your name'
-
+$driveLetter = (Get-Location).Drive.Name
+$computerName = Read-Host "Enter New Computer Name if you want to rename it: ($($env:COMPUTERNAME))"
 $CloudPath = "$HOME"+"\"+"OneDrive"
 
 function AddToPath {
