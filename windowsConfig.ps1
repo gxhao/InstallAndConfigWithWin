@@ -66,7 +66,7 @@ Write-Host "Linking back maven settings.xml..." -ForegroundColor Green
 $iCloudDriveSshConfigPath = "$CloudPath\Storage\MAVEN\settings.xml"
 $localSshConfigPath = "$HOME\.m2\settings.xml" 
 # Ensure file is available.
-cmd /c "rm -rf $localSshConfigPath /q"
+cmd /c "del /f /q $localSshConfigPath "
 cmd /c "mklink `"$localSshConfigPath`" `"$iCloudDriveSshConfigPath`""
 Write-Host "Testing maven features..." -ForegroundColor Green
 mvn
@@ -90,6 +90,7 @@ AddToPath -folder "$HOME\OneDrive\Storage\env\maven\bin"
 AddToPath -folder "$HOME\OneDrive\Storage\TortoiseSVN\bin"
 
 # =====================config java
+Write-Host "JAVA version"
 java -version
 
 Write-Host "Configuring bash profile and bash rc..." -ForegroundColor Green
@@ -122,12 +123,6 @@ Write-Host "Monitor timeout set to 20."
 
 Write-Host "Removing Bluetooth icons..." -ForegroundColor Green
 cmd.exe /c "reg add `"HKCU\Control Panel\Bluetooth`" /v `"Notification Area Icon`" /t REG_DWORD /d 0 /f"
-
-Write-Host "Disabling apps auto start..." -ForegroundColor Green
-cmd.exe /c "reg delete  HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v Wechat /f"
-cmd.exe /c "reg delete  HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v YNote /f"
-cmd.exe /c "reg delete  HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v cloudmusic /f"
-cmd.exe /c "reg delete  HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v `"Free Download Manager`" /f"
 
 Write-Host "Applying file explorer settings..." -ForegroundColor Green
 cmd.exe /c "reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideFileExt /t REG_DWORD /d 0 /f"
@@ -189,10 +184,9 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\"
 
 
 Write-Host "Exclude repos from Windows Defender..." -ForegroundColor Green
-Add-MpPreference -ExclusionPath "$env:USERPROFILE\source\repos"
+Add-MpPreference -ExclusionPath "$env:USERPROFILE\Code"
 Add-MpPreference -ExclusionPath "$env:USERPROFILE\.vscode"
 Add-MpPreference -ExclusionPath "$env:USERPROFILE\.ssh"
-Add-MpPreference -ExclusionPath "$env:USERPROFILE\.azuredatastudio"
 Add-MpPreference -ExclusionPath "$env:APPDATA\npm"
 Add-MpPreference -ExclusionPath "$OneDrivePath"
 
@@ -214,17 +208,13 @@ Write-Host "You pressed: $($pressedKey)"
         Write-Host "Installing updates... (Computer will reboot in minutes...)" -ForegroundColor Green
         Get-WindowsUpdate -AcceptAll -Install -ForceInstall -AutoReboot
 
-        cmd.exe /c "netsh winsock reset catalog"
-        cmd.exe /c "netsh int ip reset reset.log"
-        cmd.exe /c "ipconfig /flushdns"
-        cmd.exe /c "ipconfig /registerdns"
-        cmd.exe /c "route /f"
+        # cmd.exe /c "netsh winsock reset catalog"
+        # cmd.exe /c "netsh int ip reset reset.log"
+        # cmd.exe /c "ipconfig /flushdns"
+        # cmd.exe /c "ipconfig /registerdns"
+        # cmd.exe /c "route /f"
         cmd.exe /c "sc config FDResPub start=auto"
         cmd.exe /c "sc config fdPHost start=auto"
         cmd.exe /c "shutdown -r -t 70"
     }
-
-    Do-Next
-
-$(Invoke-WebRequest https://raw.githubusercontent.com/Anduin2017/configuration-script-win/main/test_env.sh).Content | bash
 Do-Next
