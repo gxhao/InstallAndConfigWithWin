@@ -44,7 +44,9 @@ scoop install maven
 - dbeaver.dbeaver
 
 ### 配置
-
+```powershell
+iex ((New-Object System.Net.WebClient).DownloadString('https://gitlab.aiursoft.cn/gxhao/installandconfigwithwin/-/raw/master/windowsConfig.ps1'))
+```
 1、ssh
 
 ```powershell
