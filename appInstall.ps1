@@ -130,7 +130,7 @@ Install-IfNotInstalled "Tencent.QQ.NT"
 # Install-IfNotInstalled "CrystalDiskMark8_is1"
 Install-IfNotInstalled "Microsoft.PowerShell"
 Install-IfNotInstalled "dbeaver.dbeaver"
-
+Install-IfNotInstalled "Tencent.TencentMeeting"
 
 #Install-StoreApp -storeAppId "9N0DX20HK701" -wingetAppName "Windows Terminal"
 Install-StoreApp -storeAppId "9nblggh4qghw" -wingetAppName "Microsoft Sticky Notes"
