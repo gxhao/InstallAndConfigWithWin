@@ -4,11 +4,10 @@ Write-Host "        PART 3  - Terminal    " -ForegroundColor Green
 Write-Host "-----------------------------" -ForegroundColor Green
 
 
-$email = Read-Host -Prompt 'Input your email'
-$name = Read-Host -Prompt 'Input your name'
+
 $driveLetter = (Get-Location).Drive.Name
 $computerName = Read-Host "Enter New Computer Name if you want to rename it: ($($env:COMPUTERNAME))"
-$CloudPath = "$HOME"+"\"+"OneDrive"
+$CloudPath = "Z:\"
 
 function AddToPath {
     param (
@@ -34,10 +33,6 @@ AddToPath -folder "C:\Program Files\VideoLAN\VLC"
 
 
 
-Get-ChildItem $CloudPath | Format-Table -AutoSize
-
-    Write-Host "Setting execution policy to remotesigned..." -ForegroundColor Green
-    Set-ExecutionPolicy remotesigned
 
 # 长路径支持
 # New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
@@ -56,8 +51,8 @@ Write-Host "yes" | ssh -o "StrictHostKeyChecking no" git@github.com
 Write-Host "Configuring git..." -ForegroundColor Green
 Write-Host "Setting git email to $email" -ForegroundColor Yellow
 Write-Host "Setting git name to $name" -ForegroundColor Yellow
-git config --global user.email $email
-git config --global user.name $name
+git config --global user.email 1625546088@qq.com
+git config --global user.name gxhao
 git config --global core.autocrlf true
 git config --global core.longpaths true
 
@@ -157,7 +152,7 @@ Write-Host "Clearing recycle bin..." -ForegroundColor Green
 Write-Host "Recycle bin cleared on $driveLetter..."
 Clear-RecycleBin -DriveLetter $driveLetter -Force -Confirm
 
-Disabling Active Probing may increase performance. But on some machines may cause UWP unable to connect to Internet.
+# Disabling Active Probing may increase performance. But on some machines may cause UWP unable to connect to Internet.
 Write-Host "Disabling rubbish Active Probing..." -ForegroundColor Green
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\NlaSvc\Parameters\Internet\" -Name EnableActiveProbing -Value 0 -Force
 Write-Host "Disabled Active Probing."
